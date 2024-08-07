@@ -1,5 +1,5 @@
 // DOM  - Document Object Model
-
+// LocalStorage kullanarak kanban yapısı oluşturmak
 document.getElementById('addTaskBtn').addEventListener('click', addTask);
 
 
@@ -109,7 +109,7 @@ function dragLeave(event) {
 function drop(event) {
     event.preventDefault();
     const id = event.dataTransfer.getData('text/plain');
-    const draggable = document.getElementById(id);
+    const draggable = document.getElementById("task");
     if (event.target.classList.contains('kanban-column')) {
         event.target.classList.remove('over');
         event.target.appendChild(draggable);
