@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kanban App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .form-container {
+            margin-bottom: 20px;
+        }
+
+        .kanban-board {
+            display: flex;
+            width: 80%;
+            height: 80vh;
+            gap: 20px;
+        }
+
+        .kanban-column {
+            flex: 1;
+            background-color: #f0f0f0;
+            padding: 10px;
+            border-radius: 5px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            overflow-y: auto;
+        }
+
+        .kanban-column h2 {
+            text-align: center;
+        }
+
+        .task {
+            padding: 10px;
+            background-color: lightblue;
+            border-radius: 5px;
+            cursor: grab;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .task .actions {
+            display: flex;
+            gap: 5px;
+        }
+
+        .task .actions button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .over {
+            border: 5px solid #d81414;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="form-container">
+        <input type="text" id="taskInput" placeholder="Enter new task">
+        <button id="addTaskBtn">Add Task</button>
+    </div>
+
+    <div class="kanban-board">
+        <div class="kanban-column" id="todo">
+            <h2>To Do</h2>
+        </div>
+        <div class="kanban-column" id="inProgress">
+            <h2>In Progress</h2>
+        </div>
+        <div class="kanban-column" id="done">
+            <h2>Done</h2>
+        </div>
+
+    </div>
+
+    <script src="kanban.js"></script>
+</body>
+
+</html>
