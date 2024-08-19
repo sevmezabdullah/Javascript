@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hesap Makinesi</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+
+        .hesap-makinesi {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            width: 300px;
+        }
+
+        #ekran {
+            width: 100%;
+            height: 40px;
+            margin-bottom: 10px;
+            text-align: right;
+            font-size: 1.5em;
+            padding-right: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        .butonlar {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+        }
+
+        button {
+            font-size: 1.5em;
+            padding: 15px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            cursor: pointer;
+        }
+
+        button:active {
+            background-color: #ddd;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="hesap-makinesi">
+        <input type="text" id="ekran" disabled>
+        <div class="butonlar">
+            <button class="rakam">7</button>
+            <button class="rakam">8</button>
+            <button class="rakam">9</button>
+            <button class="operator">/</button>
+            <button class="rakam">4</button>
+            <button class="rakam">5</button>
+            <button class="rakam">6</button>
+            <button class="operator">*</button>
+            <button class="rakam">1</button>
+            <button class="rakam">2</button>
+            <button class="rakam">3</button>
+            <button class="operator">-</button>
+            <button class="rakam">0</button>
+            <button class="nokta">.</button>
+            <button id="esittir">=</button>
+            <button class="operator">+</button>
+            <button id="temizle">C</button>
+        </div>
+    </div>
+
+    <script src="calculator.js"></script>
+</body>
+
+</html>
