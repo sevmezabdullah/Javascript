@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>D3 JS</title>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+</head>
+
+<body>
+    <h1>Bar Chart with D3.js</h1>
+    <svg width="500" height="200"></svg>
+
+
+    <script>
+        const data = [80, 120, 60, 150, 200];
+
+        const svg = d3.select("svg");
+        const margin = { top: 20, right: 30, bottom: 30, left: 40 };
+        const width = +svg.attr("width") - margin.left - margin.right;
+        const height = +svg.attr("height") - margin.top - margin.bottom;
+
+        const x = d3.scaleBand()
+            .domain(data.map((d, i) => i))
+            .range([margin.left, width - margin.right])
+            .padding(0.1);
+
+        const y = d3.scaleLinear()
+            .domain([0, d3.max(data)])
+            .nice()
+            .range([height - margin.bottom, margin.top]);
+
+        svg.append("g")
+            .selectAll("rect")
+            .data(data)
+            .enter().append("rect")
+            .attr("x", (d, i) => x(i))
+            .attr("y", d => y(d))
+            .attr("height", d => y(0) - y(d))
+            .attr("width", x.bandwidth())
+            .attr("fill", "steelblue");
+
+        svg.append("g")
+            .attr("transform", `translate(0,${height - margin.bottom})`)
+            .call(d3.axisBottom(x).tickFormat(i => i + 1));
+
+        svg.append("g")
+            .attr("transform", `translate(${margin.left},0)`)
+            .call(d3.axisLeft(y));
+    </script>
+
+
+</body>
+
+</html>
