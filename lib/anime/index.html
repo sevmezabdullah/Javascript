@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anime JS</title>
+    <style>
+        #box {
+            width: 50px;
+            height: 50px;
+            background-color: red;
+            margin-top: 50px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="box"></div>
+
+
+    <script>
+        const box = document.getElementById("box");
+        box.addEventListener("click", () => {
+            anime({
+                targets: "#box",
+                translateX: 250,
+                rotate: '1turn',
+                duration: 5000,
+                backgroundColor: '#fff'
+            })
+        })
+    </script>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+    <script src="index.js"></script>
+</body>
+
+</html>
