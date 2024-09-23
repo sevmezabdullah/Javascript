@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css">
+  <title>Haber Uygulaması</title>
+</head>
+
+<body>
+  <div id="app">
+
+    <h1>Abdullah Haber</h1>
+    <div id="loading" style="display: none;">Haberler Getiriliyor...</div>
+
+    <div id="news-container"></div>
+
+    <div id="pagination-controls">
+      <button id="prev" disabled>Önceki Sayfa</button>
+      <span id="page-info"></span>
+      <button id="next">Sonraki Sayfa</button>
+
+      <div>
+        <input type="number" id="page-input" min="1">
+        <button id="go-to-page">Sayfaya git</button>
+      </div>
+    </div>
+
+
+  </div>
+  <script type="module" src="/main.js"></script>
+</body>
+
+</html>

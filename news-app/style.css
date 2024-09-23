@@ -1,0 +1,23 @@
+#news-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+#pagination-controls {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  align-items: center;
+}
+
+#pagination-controls input {
+  width: 50px;
+}
+
+#loading {
+  text-align: center;
+  font-size: 1.5em;
+  color: #007bff;
+}
