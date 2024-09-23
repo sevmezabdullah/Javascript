@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>E-Commerce Stock Tracker</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+
+    .product {
+      border: 1px solid #ddd;
+      margin: 10px;
+      padding: 10px;
+      width: 200px;
+    }
+
+    .product img {
+      width: 100%;
+    }
+
+    .product-list {
+      display: flex;
+      flex-wrap: wrap;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app"></div>
+  <h1>Ürün Listesi</h1>
+  <div id="productList" class="product-list"></div>
+  <script>
+    const SERVICE_URL = "http://localhost:3000";
+    // SOLID 
+    // Yazılımın Temel Prensipleri
+    // S- Single Responsibility
+
+    // O- Open Closed
+    // L- Liskov Substitution
+    // I- Interface Segregation
+    // D- Dependency Inversion
+
+    // Görevi - Verileri getirmek
+    async function fetchProducts() {
+      const productList = document.getElementById("productList");
+      productList.innerHTML = "Yükleniyor..."
+
+
+      // Enum ve Environment Variables
+      try {
+        const response = await fetch(`${SERVICE_URL}/products`);
+        if (!response.ok) {
+          throw new Error("Ürünleri getirirken bir hata oluştu.")
+        }
+        const products = await response.json();
+        displayProducts(products);
+      } catch (error) {
+        productList.innerHTML = `Hata: ${error.message}`;
+      }
+    }
+
+
+
+    // Görevi - Ürünleri ekranda çizmek - render
+    function displayProducts(products) {
+      const productList = document.getElementById("productList");
+      productList.innerHTML = products.map((product) => {
+        return `<div class="product">
+                    <img src="${product.image}" alt="${product.name}">
+                    <h3>${product.name}</h3>
+                    <p>${product.description}</p>
+                    <p>Fiyat: $${product.price}</p>
+                    <p>Stok: ${product.stock > 0 ? product.stock : '<span class="out-of-stock">Stokta yok!</span>'}</p>
+                    <button ${product.stock <= 0 ? 'disabled' : ''} onclick="buyProduct(${product.id}, ${product.stock})">
+                        ${product.stock > 0 ? 'Satın Al' : 'Stokta Yok'}
+                    </button>
+                </div>`
+      }).join(` `);
+
+    }
+
+
+    // Görevi - Ürün satın almak
+    async function buyProduct(id, currentStock) {
+      if (currentStock <= 0) {
+        alert("Stokta yok!");
+        return;
+      }
+
+      const newStock = currentStock - 1;
+      try {
+        // String interpolation
+        await fetch(`${SERVICE_URL}/products/${id}`, {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({ stock: newStock })
+        })
+
+        // Re-render
+        fetchProducts();
+      } catch (error) {
+        alert("Urun satın alırken bir hata oluştu.");
+      }
+
+    }
+
+    window.onload = fetchProducts();
+    /*   document.addEventListener("DOMContentLoaded", fetchProducts) */
+  </script>
+
+
+</body>
+
+</html>
